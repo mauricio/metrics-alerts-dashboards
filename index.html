@@ -1,0 +1,394 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Metrics, alerts and dashboards</title>
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+
+	<style>
+		.red {
+			color: red;
+		}
+
+		.blue {
+			color: #1b91ff;
+		}
+
+		.green {
+			color: #c1ff0b;
+		}
+
+		.orange {
+			color: orange;
+		}
+
+		.gray {
+			color: #3f3f3f;
+		}
+
+		.yellow {
+			color: #F4FF77;
+		}
+
+		.black {
+			color: black;
+		}
+
+		.shadowed {
+			text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		}
+	</style>
+
+</head>
+<body>
+<div class="reveal">
+	<div class="slides">
+
+		<section>
+			<h1 class="shadowed">
+				<span class="blue">Metrics</span>, <span class="red">Alerts</span> and
+				<span class="green">Dashboards</span>
+			</h1>
+			<p class="shadowed">
+				<small>
+					<a href="http://mauricio.github.io/">Maurício Linhares</a> /
+					<a href="http://twitter.com/mauriciojr">@mauriciojr</a> /
+					<span class="shadowed">Software Engineer at DigitalOcean</span>
+				</small>
+			</p>
+		</section>
+
+		<section>
+			<h1>Why?</h1>
+			<p>
+				We need to understand how <span class="green">production</span> systems
+				are doing their <span class="blue">job</span>.
+			</p>
+		</section>
+
+		<section>
+			<h1><span class="green">Metrics</span></h1>
+			<ul>
+				<li>the use or study of poetic meters; prosody</li>
+				<li>a method of measuring something, or the results obtained from this</li>
+			</ul>
+		</section>
+
+		<section>
+			<h1><span class="orange">Metrics</span></h1>
+			<ul>
+				<li class="gray">the use or study of poetic meters; prosody</li>
+				<li class="green">a method of measuring something, or the results obtained from this</li>
+			</ul>
+		</section>
+
+		<section>
+			<h1>Where do I start?</h1>
+			<p>
+				Any <span class="red">finite</span> resource you're using.
+			</p>
+		</section>
+
+		<section>
+			<h1><span class="green">What?</span></h1>
+			<ul>
+				<li>CPU time</li>
+				<li>File system handles</li>
+				<li>Memory usage</li>
+				<li>File system usage</li>
+			</ul>
+		</section>
+
+		<section>
+			<h1>Why?</h1>
+			<p>
+				These metrics provide you with a <span class="orange">glimpse</span> of what is going
+				on with the system in general and allows for noticing <span class="green">differences</span>
+				in different hosts running the <span class="red">same</span> application.
+			</p>
+		</section>
+
+		<section data-background-image="images/gotit.jpg">
+		</section>
+
+		<section>
+			<h1>Application metrics</h1>
+			<ul>
+				<li>
+					Operation <span class="orange">count</span>
+				</li>
+				<li>
+					Response <span class="red">time</span>
+				</li>
+				<li>
+					<span class="green">Successful</span>, degraded and failed operations
+				</li>
+				<li>
+					<span class="yellow">Durability</span>, can we find the data we wrote?
+				</li>
+				<li>
+					<span class="blue">Correctness</span>, did we get the right data back?
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h1>Got some <span class="orange">extra</span> time?</h1>
+			<p>
+				Same metrics mentioned before but for all the subsystems you have:
+				<span class="green">database</span>, <span class="blue">caches</span> (add cache hit ratio here), <span
+					class="red">file system access</span>,
+				<span class="orange">other applications</span> being called.
+			</p>
+		</section>
+
+		<section>
+			<h1>The case <span class="red">against</span> averages</h1>
+			<p>
+				Six users load your site in <span class="orange">0.1 second</span>,
+				4 load it in <span class="blue">2 seconds</span>, average is <span class="yellow">0.86</span>.
+			</p>
+		</section>
+
+		<section data-background-image="images/wtf.jpg">
+		</section>
+
+		<section>
+			<h1>Averages are <span class="red">bad</span> at detecting <span class="blue">outliers</span></h1>
+			<p>
+				They might show you a pretty number when <span class="orange">50% of your customers</span>
+				are having an awful experience.
+			</p>
+		</section>
+
+		<section>
+			<h1>Still, percentiles are <span class="orange">hard</span></h1>
+			<p>
+				Specially at the beginning, don't be too harsh on you, pick a collection of percentiles
+				that make sense <span class="green">(0.90, 0.95 and 0.99, for instance)</span> and remember that every
+				9 you add after 0.99 is going to be <span class="blue">exponentially</span> more expensive than before.
+			</p>
+		</section>
+
+		<section>
+			<h1>Don't assume your metrics are the <span class="blue">be all and end all</span></h1>
+			<p>
+				Nice, your app has metrics and they're <span class="green">looking good</span>, but customers are still
+				complaining and saying that the metrics you're showing <span
+					class="red">don't match what they see</span>.
+			</p>
+		</section>
+
+		<section>
+			<h1>Collect metrics at the <span class="yellow">customer</span></h1>
+			<p>
+				This doesn't mean you <span class="red">shouldn't collect</span> them at your app, but that you must
+				also collect them at the customer's side so you can <span class="blue">compare</span>.
+			</p>
+		</section>
+
+		<section>
+			<h1><span class="red">Can't</span> do it?</h1>
+			<p>
+				Create <span class="green">test apps</span> that call your service trying to <span class="yellow">replicate</span>
+				your customer´s environments as much as possible and use that instead.
+			</p>
+		</section>
+
+		<section data-background-image="images/nuclear.jpg">
+			<h1>Alerts</h1>
+			<p>
+				<span class="black">The nuclear option</span>
+			</p>
+		</section>
+
+		<section>
+			<h1>3 AM, you're <span class="blue">hungover</span></h1>
+			<p>
+				Alert comes in, machine has <span class="yellow">died</span>, application needs to be moved to a <span
+					class="orange">new
+				instance</span>.
+			</p>
+		</section>
+
+		<section>
+			<h1><span class="red">406</span></h1>
+			<p><span class="blue">Not Acceptable</span></p>
+		</section>
+
+		<section>
+			<h1>Can we <span class="green">automate</span> the response?</h1>
+			<p>
+				Not an <span class="red">alert</span>.
+			</p>
+		</section>
+
+		<section>
+			<h1><span class="green">Easy picks</span> for alerts</h1>
+			<ul>
+				<li><span class="red">Upper and lower</span> traffic/usage counts</li>
+				<li>Going <span class="orange">over</span> hardware limits</li>
+				<li><span class="yellow">Continuous growth</span> (memory or file system leaks)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h1>What does it mean to be <span class="green">healthy</span>?</h1>
+			<p>
+				Each one of your main metrics is a <span class="orange">Service Level Indicator</span>. Collect them and
+				build a <span class="blue">Service Level Objective</span>.
+			</p>
+		</section>
+
+		<section>
+			<h1>Objective!</h1>
+			<p>
+				<span class="blue">53% of visits</span> are likely to be <span class="red">abandoned</span> if pages
+				take longer than <span class="orange">3 seconds</span> to load.
+			</p>
+		</section>
+
+		<section>
+			<h1>But don't be too <span class="red">aggressive</span></h1>
+			<p>Setting an objective that's at the <span class="green">limit</span> of today's metrics might produce a
+				huge amount of toil to
+				maintain.</p>
+		</section>
+
+		<section>
+			<h1>Example!</h1>
+			<ul>
+				<li>0.90 under <span class="green">500ms</span></li>
+				<li>0.95 under <span class="orange">1 second</span></li>
+				<li>0.99 under <span class="red">2 seconds</span></li>
+				<li>No more than <span class="yellow">0.1%</span> of failed requests</li>
+			</ul>
+		</section>
+
+		<section>
+			<h1>And now <span class="red">alert</span> on those!</h1>
+		</section>
+
+		<section>
+			<h1>Alerts need <span class="green">playbooks</span> with</h1>
+			<ul>
+				<li><span class="red">What</span> the alert is about</li>
+				<li>Places to look for <span class="orange">more information</span></li>
+				<li>Possible or other <span class="blue">known culprits</span></li>
+			</ul>
+		</section>
+
+		<section>
+			<h1>Alerts need a <span class="green">follow up</span></h1>
+			<ul>
+				<li>Was the alert <span class="red">useful</span>?</li>
+				<li>Can we <span class="yellow">automate</span> the response?</li>
+				<li>Is there <span class="orange">another metric</span> we could track to fine tune the alert?</li>
+				<li>Can we prevent his alert from triggering again under the same <span
+						class="blue">circumstances</span>?
+				</li>
+			</ul>
+		</section>
+
+		<section>
+			<h1>If there's nothing to <span class="green">learn</span>...</h1>
+			<p>... it't not an <span class="red">alert</span></p>
+		</section>
+
+		<section>
+			<h1><span class="green">Accept</span> failure</h1>
+			<p>
+				Failure happens, alerting on <span class="orange">all failures</span>
+				is a huge mistake.
+			</p>
+		</section>
+
+		<section data-background-image="images/dashboard.jpg">
+			<h1>Dashboards</h1>
+		</section>
+
+		<section>
+			<h1>You <span class="red">should not</span> be looking at <span class="green">dashboards</span> to detect
+				issues</h1>
+		</section>
+
+		<section>
+			<h1>When should we look at <span class="green">dashboards</span>?</h1>
+			<ul>
+				<li><span class="red">Outages</span></li>
+				<li><span class="blue">Unknown trends</span></li>
+				<li>Have <span class="yellow">nothing</span> better to do</li>
+			</ul>
+		</section>
+
+		<section>
+			<p>
+				<img src="images/flipper.png"/>
+			</p>
+		</section>
+
+		<section>
+			<h1>Different <span class="green">audiences</span> require different <span class="yellow">dashboards</span>
+			</h1>
+		</section>
+
+		<section>
+			<p>
+				<img src="images/triage.png"/>
+			</p>
+		</section>
+
+		<section>
+			<h1><span class="green">Be direct</span></h1>
+			<p>
+				You're going to be looking at this during outages when you
+				just woke up and you have no idea where you are. Make sure
+				it is easy to understand.
+			</p>
+		</section>
+
+		<section data-background-image="images/end.jpeg">
+			<h1>The end</h1>
+		</section>
+
+	</div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+  // More info about config & dependencies:
+  // - https://github.com/hakimel/reveal.js#configuration
+  // - https://github.com/hakimel/reveal.js#dependencies
+  Reveal.initialize({
+    dependencies: [
+      {src: 'plugin/markdown/marked.js'},
+      {src: 'plugin/markdown/markdown.js'},
+      {src: 'plugin/notes/notes.js', async: true},
+      {
+        src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+          hljs.initHighlightingOnLoad();
+        }
+      }
+    ]
+  });
+</script>
+</body>
+</html>
