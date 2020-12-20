@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>Metrics, alerts and dashboards</title>
+	<title>Métricas, alertas e dashboards</title>
 
 	<link rel="stylesheet" href="css/reveal.css">
 	<link rel="stylesheet" href="css/theme/black.css">
@@ -62,7 +62,7 @@
 
 		<section>
 			<h1 class="shadowed">
-				<span class="blue">Metrics</span>, <span class="red">Alerts</span> and
+				<span class="blue">Métricas</span>, <span class="red">Alertas</span> e
 				<span class="green">Dashboards</span>
 			</h1>
 			<p class="shadowed">
@@ -75,52 +75,52 @@
 		</section>
 
 		<section>
-			<h1>Why?</h1>
+			<h1>Por que?</h1>
 			<p>
-				We need to understand how <span class="green">production</span> systems
-				are doing their <span class="blue">job</span>.
+				Precisamos entender como sistemas em <span class="green">produção</span>
+				estão <span class="blue">executando</span>.
 			</p>
 		</section>
 
 		<section>
-			<h1><span class="green">Metrics</span></h1>
+			<h1><span class="green">Métricas</span></h1>
 			<ul>
-				<li>the use or study of poetic meters; prosody</li>
-				<li>a method of measuring something, or the results obtained from this</li>
+				<li>arte da retórica que trata da medida dos versos; metrificação.</li>
+				<li>o método de medir coisas ou os resultados obtidos ao medir</li>
 			</ul>
 		</section>
 
 		<section>
-			<h1><span class="orange">Metrics</span></h1>
+			<h1><span class="orange">Métricas</span></h1>
 			<ul>
-				<li class="gray">the use or study of poetic meters; prosody</li>
-				<li class="green">a method of measuring something, or the results obtained from this</li>
+				<li class="gray">arte da retórica que trata da medida dos versos; metrificação.</li>
+				<li class="green">o método de medir coisas ou os resultados obtidos ao medir</li>
 			</ul>
 		</section>
 
 		<section>
-			<h1>Where do I start?</h1>
+			<h1>Onde começar?</h1>
 			<p>
-				Any <span class="red">finite</span> resource you're using.
+				Qualquer recurso <span class="red">finito</span> que você esteja usando.
 			</p>
 		</section>
 
 		<section>
-			<h1><span class="green">What?</span></h1>
+			<h1><span class="green">Quais?</span></h1>
 			<ul>
 				<li>CPU time</li>
 				<li>File system handles</li>
-				<li>Memory usage</li>
-				<li>File system usage</li>
+				<li>Uso de memória</li>
+				<li>Espaço em disco</li>
 			</ul>
 		</section>
 
 		<section>
-			<h1>Why?</h1>
+			<h1>Por que?</h1>
 			<p>
-				These metrics provide you with a <span class="orange">glimpse</span> of what is going
-				on with the system in general and allows for noticing <span class="green">differences</span>
-				in different hosts running the <span class="red">same</span> application.
+				Essas métricas fornecem uma <span class="orange">idéia</span> do que está acontecendo
+				com o sistema no geral e ajudam a perceber <span class="green">diferenças</span> em hosts diferentes executando
+				a <span class="red">mesma</span> aplicação.
 			</p>
 		</section>
 
@@ -128,41 +128,41 @@
 		</section>
 
 		<section>
-			<h1>Application metrics</h1>
+			<h1>Métricas de aplicações</h1>
 			<ul>
 				<li>
-					Operation <span class="orange">count</span>
+					Quantidade de <span class="orange">operações</span>
 				</li>
 				<li>
-					Response <span class="red">time</span>
+					<span class="red">Tempo</span> de resposta
 				</li>
 				<li>
-					<span class="green">Successful</span>, degraded and failed operations
+					Operações com <span class="green">sucesso</span>, degradadas ou com erro
 				</li>
 				<li>
-					<span class="yellow">Durability</span>, can we find the data we wrote?
+					<span class="yellow">Durabilidade</span>, dá pra achar as informações que enviamos?
 				</li>
 				<li>
-					<span class="blue">Correctness</span>, did we get the right data back?
+					<span class="blue">Corretude</span>, encontramos os dados corretos de volta?
 				</li>
 			</ul>
 		</section>
 
 		<section>
-			<h1>Got some <span class="orange">extra</span> time?</h1>
+			<h1>Dá <span class="orange">tempo</span> de adicionar mais?</h1>
 			<p>
-				Same metrics mentioned before but for all the subsystems you have:
-				<span class="green">database</span>, <span class="blue">caches</span> (add cache hit ratio here), <span
-					class="red">file system access</span>,
-				<span class="orange">other applications</span> being called.
+				Mesmas métricas anteriores mas pros sub-sistemas que você chama da sua aplicação:
+				<span class="green">banco de dados</span>, <span class="blue">caches</span> (incluir cache hits), <span
+					class="red">acesso ao sistema de arquivos</span>,
+				<span class="orange">outras aplicações</span> sendo chamadas.
 			</p>
 		</section>
 
 		<section>
-			<h1>The case <span class="red">against</span> averages</h1>
+			<h1>Não use <span class="red">médias</span></h1>
 			<p>
-				Six users load your site in <span class="orange">0.1 second</span>,
-				4 load it in <span class="blue">2 seconds</span>, average is <span class="yellow">0.86</span>.
+				Seis usuários carregam o seu site em <span class="orange">0.1 segundos</span>,
+				4 em <span class="blue">2 segundos</span>, média é <span class="yellow">0.86</span>.
 			</p>
 		</section>
 
@@ -170,60 +170,59 @@
 		</section>
 
 		<section>
-			<h1>Averages are <span class="red">bad</span> at detecting <span class="blue">outliers</span></h1>
+			<h1>Médias são  <span class="red">terríveis</span> pra detectar <span class="blue">extremos</span></h1>
 			<p>
-				They might show you a pretty number when <span class="orange">50% of your customers</span>
-				are having an awful experience.
+				Elas podem mostrar um número aceitável mas <span class="orange">50% dos seus clientes</span>
+				estão tendo uma experiência horrível. Use percentis.
 			</p>
 		</section>
 
 		<section>
-			<h1>Still, percentiles are <span class="orange">hard</span></h1>
+			<h1>Ainda assim, percentis são <span class="orange">difíceis</span></h1>
 			<p>
-				Specially at the beginning, don't be too harsh on you, pick a collection of percentiles
-				that make sense <span class="green">(0.90, 0.95 and 0.99, for instance)</span> and remember that every
-				9 you add after 0.99 is going to be <span class="blue">exponentially</span> more expensive than before.
+				Especialmente no início, não exagere nos números, escolha um grupo de percentis que faz sentido
+				pro nível operacional das suas aplicações <span class="green">(0.90, 0.95 e 0.99, por exemplo)</span>.
+				Pra cada 9 depois de 0.99 vai ser <span class="blue">exponencialmente</span> mais difícil e caro.
 			</p>
 		</section>
 
 		<section>
-			<h1>Don't assume your metrics are the <span class="blue">be all and end all</span></h1>
+			<h1>Não espere que as métricas da sua aplicação <span class="blue">representam tudo</span></h1>
 			<p>
-				Nice, your app has metrics and they're <span class="green">looking good</span>, but customers are still
-				complaining and saying that the metrics you're showing <span
-					class="red">don't match what they see</span>.
+				Legal, sua aplicação tem métricas e elas estão <span class="green">ótimas</span>, mas clientes
+				ainda estão reclamando que a aplicação não está <span class="red">se comportando corretamente</span>.
 			</p>
 		</section>
 
 		<section>
-			<h1>Collect metrics at the <span class="yellow">customer</span></h1>
+			<h1>Colete próximo do seu <span class="yellow">cliente</span></h1>
 			<p>
-				This doesn't mean you <span class="red">shouldn't collect</span> them at your app, but that you must
-				also collect them at the customer's side so you can <span class="blue">compare</span>.
+				Isso não significa que você <span class="green">não deva</span> coletar elas na sua aplicação, mas você precisa ter uma visão
+				externa, como os seus clientes, pra ter certeza que os numeros realmente <span class="blue">batem</span>.
 			</p>
 		</section>
 
 		<section>
-			<h1><span class="red">Can't</span> do it?</h1>
+			<h1><span class="red">Não dá pra fazer?</span></h1>
 			<p>
-				Create <span class="green">test apps</span> that call your service trying to <span class="yellow">replicate</span>
-				your customer´s environments as much as possible and use that instead.
+				Crie <span class="green">aplicações de teste</span> que chamam o seu serviço como <span class="yellow">clientes externos</span>
+				chamariam, replicando ao máximo os ambientes que os seus sistemas usam (localização geográfica, acesso a rede,
+				linguagens, sistemas operacionais).
 			</p>
 		</section>
 
 		<section data-background-image="images/nuclear.jpg">
-			<h1>Alerts</h1>
+			<h1>Alertas</h1>
 			<p>
-				<span class="black">The nuclear option</span>
+				<span class="black">A bomba nuclear</span>
 			</p>
 		</section>
 
 		<section>
-			<h1>3 AM, you're <span class="blue">hungover</span></h1>
+			<h1>3 da manhã, você está <span class="blue">de ressaca</span></h1>
 			<p>
-				Alert comes in, machine has <span class="yellow">died</span>, application needs to be moved to a <span
-					class="orange">new
-				instance</span>.
+				Alerta chega, máquina <span class="yellow">morreu</span>, precisa mover a aplicação pra uma
+				<span class="orange">nova máquina</span>.
 			</p>
 		</section>
 
@@ -233,89 +232,90 @@
 		</section>
 
 		<section>
-			<h1>Can we <span class="green">automate</span> the response?</h1>
+			<h1>Podemos <span class="green">automatizar</span> a resposta?</h1>
 			<p>
-				Not an <span class="red">alert</span>.
+				Não é um <span class="red">alerta</span>.
 			</p>
 		</section>
 
 		<section>
-			<h1><span class="green">Easy picks</span> for alerts</h1>
+			<h1><span class="green">Alertas padrão</span></h1>
 			<ul>
-				<li><span class="red">Upper and lower</span> traffic/usage counts</li>
-				<li>Going <span class="orange">over</span> hardware limits</li>
-				<li><span class="yellow">Continuous growth</span> (memory or file system leaks)</li>
+				<li><span class="red">Níveis superiores e inferiores</span> de tráfego/uso</li>
+				<li><span class="orange">Ultrapassando</span> limites de hardware</li>
+				<li><span class="yellow">Crescimento contínuo</span> (vazamentos de memória, threads ou sistemas de arquivos)</li>
 			</ul>
 		</section>
 
 		<section>
-			<h1>What does it mean to be <span class="green">healthy</span>?</h1>
+			<h1>O que significa estar com a aplicação <span class="green">saudável</span>?</h1>
 			<p>
-				Each one of your main metrics is a <span class="orange">Service Level Indicator</span>. Collect them and
-				build a <span class="blue">Service Level Objective</span>.
+				Cada uma das suas métricas principais é um <span class="orange">Service Level Indicator</span>. Juntando
+				todas você cria um<span class="blue">Service Level Objective</span>.
 			</p>
 		</section>
 
 		<section>
-			<h1>Objective!</h1>
+			<h1>Objetivo!</h1>
 			<p>
-				<span class="blue">53% of visits</span> are likely to be <span class="red">abandoned</span> if pages
-				take longer than <span class="orange">3 seconds</span> to load.
+				<span class="blue">53% das visitas</span> vão  <span class="red">largar</span> o site se as páginas
+				demoram mais de <span class="orange">3 segundos</span> pra carregar.
 			</p>
 		</section>
 
 		<section>
-			<h1>But don't be too <span class="red">aggressive</span></h1>
-			<p>Setting an objective that's at the <span class="green">limit</span> of today's metrics might produce a
-				huge amount of toil to
-				maintain.</p>
+			<h1> Não <span class="red">exagere</span></h1>
+			<p>
+				Definir um objetivo usando como base os limites o seu sistema atual vai criar muita dor de cabeça, seja
+				generoso quando estiver começando e aperte os números conforme o nível operacional melhorar.
+			</p>
 		</section>
 
 		<section>
-			<h1>Example!</h1>
+			<h1>Exemplo!</h1>
 			<ul>
-				<li>0.90 under <span class="green">500ms</span></li>
-				<li>0.95 under <span class="orange">1 second</span></li>
-				<li>0.99 under <span class="red">2 seconds</span></li>
-				<li>No more than <span class="yellow">0.1%</span> of failed requests</li>
+				<li>0.90 em <span class="green">500ms</span></li>
+				<li>0.95 em <span class="orange">1 segundo</span></li>
+				<li>0.99 em <span class="red">2 segundos</span></li>
+				<li>Não mais do que <span class="yellow">0.1%</span> de operações com erro</li>
 			</ul>
 		</section>
 
 		<section>
-			<h1>And now <span class="red">alert</span> on those!</h1>
+			<h1>E agora <span class="red">alerte</span> nesses numeros!</h1>
 		</section>
 
 		<section>
-			<h1>Alerts need <span class="green">playbooks</span></h1>
+			<h1>Alertas precisam de <span class="green">manuais</span></h1>
 			<ul>
-				<li><span class="red">What</span> the alert is about</li>
-				<li>Places to look for <span class="orange">more information</span></li>
-				<li>Possible or other <span class="blue">known culprits</span></li>
+				<li><span class="red">O que</span> é o alerta</li>
+				<li>Lugares onde obter <span class="orange">mais informações</span> sobre o alerta</li>
+				<li><span class="blue">Motivos</span> mais comuns para o alerta</li>
 			</ul>
 		</section>
 
 		<section>
-			<h1>Alerts need a <span class="green">follow up</span></h1>
+			<h1>Alertas precisam de  <span class="green">acompanhamento</span></h1>
 			<ul>
-				<li>Was the alert <span class="red">useful</span>?</li>
-				<li>Can we <span class="yellow">automate</span> the response?</li>
-				<li>Is there <span class="orange">another metric</span> we could track to fine tune the alert?</li>
-				<li>Can we prevent his alert from triggering again under the same <span
-						class="blue">circumstances</span>?
+				<li>Esse alerta é <span class="red">útil</span>?</li>
+				<li>É possível <span class="yellow">automatizar</span> a resposta?</li>
+				<li>Tem alguma <span class="orange">outra métrica</span> que pode ser usada pra evitar ter que alertar?</li>
+				<li>É possível evitar que esse alerta aconteça com as mesmas <span
+						class="blue">circunstancias</span>?
 				</li>
 			</ul>
 		</section>
 
 		<section>
-			<h1>If there's nothing to <span class="green">learn</span>...</h1>
-			<p>... it't not an <span class="red">alert</span></p>
+			<h1>Se não tem nada pra <span class="green">aprender</span>...</h1>
+			<p>... não é um <span class="red">alerta</span></p>
 		</section>
 
 		<section>
-			<h1><span class="green">Accept</span> failure</h1>
+			<h1><span class="green">Aceite</span> erros</h1>
 			<p>
-				Failure happens, alerting on <span class="orange">all failures</span>
-				is a huge mistake.
+				Erros acontecem, alertar em todos os erros é o caminho pra
+				fazer todo mundo ignorar os alertas.
 			</p>
 		</section>
 
@@ -324,16 +324,16 @@
 		</section>
 
 		<section>
-			<h1>You <span class="red">should not</span> be looking at <span class="green">dashboards</span> to detect
-				issues</h1>
+			<h1>Você <span class="red">não deve</span> ficar olhando <span class="green">dashboards</span> pra
+			descobrir problemas</h1>
 		</section>
 
 		<section>
-			<h1>When should we look at <span class="green">dashboards</span>?</h1>
+			<h1>Quando devemos olhar as nossas <span class="green">dashboards</span>?</h1>
 			<ul>
 				<li><span class="red">Outages</span></li>
-				<li><span class="blue">Unknown trends</span></li>
-				<li>Have <span class="yellow">nothing</span> better to do</li>
+				<li><span class="blue">Tendências inesperadas</span></li>
+				<li>Não tem <span class="yellow">nada</span> melhor pra fazer</li>
 			</ul>
 		</section>
 
@@ -344,7 +344,8 @@
 		</section>
 
 		<section>
-			<h1>Different <span class="green">audiences</span> require different <span class="yellow">dashboards</span>
+			<h1>
+				<span class="green">Grupos</span> diferentes precisam de <span class="yellow">dashboards</span> diferentes
 			</h1>
 		</section>
 
@@ -355,11 +356,11 @@
 		</section>
 
 		<section>
-			<h1><span class="green">Be direct</span></h1>
+			<h1><span class="green">Seja direto</span></h1>
 			<p>
-				You're going to be looking at this during outages when you
-				just woke up and you have no idea where you are. Make sure
-				it is easy to understand.
+				Você vai olhar pra elas durante outages, depois de acordar e quando você
+				não tem a menor idéia do que está acontecendo, elas precisam ser fáceis de usar
+				e entender.
 			</p>
 		</section>
 
